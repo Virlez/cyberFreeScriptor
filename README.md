@@ -80,10 +80,10 @@ Linux users can start background process as such:
 By now you have a discord server, the DiscordEarsBot is running and is a part of your server. Make sure your server has a text and voice channel.
 
 1. Enter one of your voice channels.
-2. In one of your text channels type: `*join`, the bot will join the voice channel.
+2. In one of your text channels type: `;join`, the bot will join the voice channel.
 3. Everything said within that channel will be transcribed into text (as long as the bot is within the voice channel).
-4. Type `*leave` to make the bot leave the voice channel.
-5. Type `*help` for a list of commands.
+4. Type `;leave` to make the bot leave the voice channel.
+5. Type `;help` for a list of commands.
 
 ### notes:
 - When the bot is inside a voice channel it listens to all speech and transcribes audio into text.
