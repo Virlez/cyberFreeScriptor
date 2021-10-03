@@ -334,7 +334,7 @@ async function transcribe_witai(file) {
     }
 
     try {
-        console.log('transcribe_witai')
+       /* console.log('transcribe_witai')
         const extractSpeechIntent = util.promisify(witClient.extractSpeechIntent);
         var stream = fs.createReadStream(file);
         const output = await extractSpeechIntent(witAPIKEY, stream, "audio/wav")
@@ -347,7 +347,22 @@ async function transcribe_witai(file) {
         //if (output && 'text' in output && output.text.length)
          console.log(textOut);   
         return textOut;
-    } catch (e) { console.log('transcribe_witai 851:' + e) }
+    } catch (e) { console.log('transcribe_witai 851:' + e) }*/
+
+    console.log('transcribe_witai')
+        const extractSpeechIntent = util.promisify(witClient.extractSpeechIntent);
+        var stream = Readable.from(buffer);
+        const contenttype = "audio/raw;encoding=signed-integer;bits=16;rate=48k;endian=little"
+        const output = await extractSpeechIntent(WwitAPIKEY, stream, contenttype)
+        witAI_lastcallTS = Math.floor(new Date());
+        console.log(output)
+        stream.destroy()
+        if (output && '_text' in output && output._text.length)
+            return output._text
+        if (output && 'text' in output && output.text.length)
+            return output.text
+        return json;
+    } catch (e) { console.log('transcribe_witai 851:' + e); console.log(e) }
 }
 
 // Google Speech API
