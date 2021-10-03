@@ -59,7 +59,8 @@ const SETTINGS_FILE = 'settings.json';
 
 let DISCORD_TOK = null;
 let WITAI_TOK = null; 
-let SPEECH_METHOD = 'vosk'; // witai, google, vosk
+
+
 
 function loadConfig() {
     if (fs.existsSync(SETTINGS_FILE)) {
@@ -72,7 +73,7 @@ function loadConfig() {
     WITAI_TOK = process.env.WITAI_TOK || WITAI_TOK;
     SPEECH_METHOD = process.env.SPEECH_METHOD || SPEECH_METHOD;
 
-    if (!['witai', 'google', 'vosk'].includes(SPEECH_METHOD))
+    if (!['witai', 'google'].includes(SPEECH_METHOD))
         throw 'invalid or missing SPEECH_METHOD'
     if (!DISCORD_TOK)
         throw 'invalid or missing DISCORD_TOK'
@@ -225,11 +226,7 @@ discordClient.on('message', async (msg) => {
                   })
                 }
               })
-            } else if (SPEECH_METHOD === 'vosk') {
-              let val = guildMap.get(mapKey);
-              const lang = msg.content.replace(_CMD_LANG, '').trim().toLowerCase()
-              val.selected_lang = lang;
-            } else {
+            }  else {
               msg.reply('Error: this feature is only for Google')
             }
         }
@@ -284,20 +281,6 @@ async function connect(msg, mapKey) {
         msg.reply('Error: unable to join your voice channel.');
         throw e;
     }
-}
-
-const vosk = require('vosk');
-let recs = {}
-if (SPEECH_METHOD === 'vosk') {
-  vosk.setLogLevel(-1);
-  // MODELS: https://alphacephei.com/vosk/models
-  recs = {
-    'en': new vosk.Recognizer({model: new vosk.Model('vosk_models/en'), sampleRate: 48000}),
-    // 'fr': new vosk.Recognizer({model: new vosk.Model('vosk_models/fr'), sampleRate: 48000}),
-    // 'es': new vosk.Recognizer({model: new vosk.Model('vosk_models/es'), sampleRate: 48000}),
-  }
-  // download new models if you need
-  // dev reference: https://github.com/alphacep/vosk-api/blob/master/nodejs/index.js
 }
 
 
@@ -358,12 +341,6 @@ async function transcribe(buffer, mapKey) {
       return transcribe_witai(buffer)
   } else if (SPEECH_METHOD === 'google') {
       return transcribe_gspeech(buffer)
-  } else if (SPEECH_METHOD === 'vosk') {
-      let val = guildMap.get(mapKey);
-      recs[val.selected_lang].acceptWaveform(buffer);
-      let ret = recs[val.selected_lang].result().text;
-      console.log('vosk:', ret)
-      return ret;
   }
 }
 
