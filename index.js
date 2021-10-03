@@ -320,7 +320,15 @@ let witAI_lastcallTS = null;
 const witClient = require('node-witai-speech');
 async function transcribe_witai(file) {
     try {
-        // ensure we do not send more than one request per second
+        /*// ensure we do not send more than one request per second
+        if (witAI_lastcallTS != null) {
+            let now = Math.floor(new Date());    
+            while (now - witAI_lastcallTS < 1000) {
+                console.log('sleep')
+                await sleep(100);
+                now = Math.floor(new Date());
+            }*/
+              // ensure we do not send more than one request per second
         if (witAI_lastcallTS != null) {
             let now = Math.floor(new Date());    
             while (now - witAI_lastcallTS < 1000) {
@@ -329,6 +337,7 @@ async function transcribe_witai(file) {
                 now = Math.floor(new Date());
             }
         }
+        
     } catch (e) {
         console.log('transcribe_witai 837:' + e)
     }
