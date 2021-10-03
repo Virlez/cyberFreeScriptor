@@ -340,13 +340,13 @@ async function transcribe_witai(file) {
         const output = await extractSpeechIntent(witAPIKEY, stream, "audio/wav")
         witAI_lastcallTS = Math.floor(new Date());
         console.log(output)
-        const textOut = output["text"].toString();
+        const textOut = JSON.parse(output);
         stream.destroy()
         //if (output && '_text' in output && output._text.length)
             //return output._text
         //if (output && 'text' in output && output.text.length)
-         console.log(textOut)   
-        return textOut;
+         console.log(textOut.text)   
+        return textOut.text;
     } catch (e) { console.log('transcribe_witai 851:' + e) }
 }
 
