@@ -343,9 +343,9 @@ async function transcribe_witai(file) {
         stream.destroy()
         //if (output && '_text' in output && output._text.length)
             //return output._text
-        if (output && 'text' in output && output.text.length)
-            return output.text
-        return output;
+        //if (output && 'text' in output && output.text.length)
+            
+        return JSON.parse(output, "text");
     } catch (e) { console.log('transcribe_witai 851:' + e) }
 }
 
