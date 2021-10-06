@@ -352,7 +352,7 @@ async function transcribe_witai(file) {
                 text : x.data.text};
             });*/
             console.log(output[0]["text"])
-        return output[0]["text"];
+        return output[0];
         stream.destroy()
         //if (output && '_text' in output && output._text.length)
             //return output._text
