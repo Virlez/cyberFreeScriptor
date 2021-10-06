@@ -344,7 +344,7 @@ async function transcribe_witai(file) {
             return typeof value === 'undefined' ? null : value;
           }
         const textOut = JSON.stringify(output, replacer);
-        const textJson = JSON.parse(output);
+        const textJson = JSON.parse(textOut);
        
         //JSON.parse(output)
         /*const justText = output(x => {
