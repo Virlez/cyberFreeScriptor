@@ -349,12 +349,13 @@ async function transcribe_witai(file) {
             return {
                 text : x.data.text};
             });*/
+            console.log(textOut)   
+        return textOut.text;
         stream.destroy()
         //if (output && '_text' in output && output._text.length)
             //return output._text
         //if (output && 'text' in output && output.text.length)
-         console.log(textOut)   
-        return textOut.text;
+         
     } catch (e) { console.log('transcribe_witai 851:' + e) }
 }
 
