@@ -343,9 +343,9 @@ async function transcribe_witai(file) {
         var replacer = function(key, value) {
             return typeof value === 'undefined' ? null : value;
           }
-        const textOut = JSON.stringify(output, replacer);
-        const textJson = JSON.parse(textOut);
-        var text = 'defaut';
+       // const textOut = JSON.stringify(output, replacer);
+        const textJson = JSON.parse(output);
+       
         //JSON.parse(output)
         /*const justText = output(x => {
             return {
@@ -356,16 +356,9 @@ async function transcribe_witai(file) {
                 text : x.data.text};
             });*/
             stream.destroy()
-            for(var attributename in textJson){
-               /*if (attributename == "text"){
-                   text = textJson[attributename]}
-                   console.log(text)
-                   break;*/
-                   console.log(textJson[attributename] + '/')
-                   
-            }
-           // console.log(textJson)
-        return text;
+            
+           console.log(textJson)
+        return textJson;
         
         //if (output && '_text' in output && output._text.length)
             //return output._text
