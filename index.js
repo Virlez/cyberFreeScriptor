@@ -343,7 +343,7 @@ async function transcribe_witai(file) {
         var replacer = function(key, value) {
             return typeof value === 'undefined' ? null : value;
           }
-       // const textOut = JSON.stringify(output, replacer);
+        const textOut = JSON.stringify(output, replacer);
         const textJson = JSON.parse(output);
        
         //JSON.parse(output)
