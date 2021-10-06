@@ -345,6 +345,7 @@ async function transcribe_witai(file) {
           }
         const textOut = JSON.stringify(output, replacer);
         const textJson = JSON.parse(textOut);
+        var text = 'defaut';
         //JSON.parse(output)
         /*const justText = output(x => {
             return {
@@ -356,14 +357,14 @@ async function transcribe_witai(file) {
             });*/
             stream.destroy()
             for(var attributename in textJson){
-               if (attributename === 'text'){
-                   textOut = textJson[attributename]}
-                   console.log(textOut)
+               if (attributename === "text"){
+                   text = textJson[attributename]}
+                   console.log(text)
                    break;
                    
             }
            // console.log(textJson)
-        return textOut;
+        return text;
         
         //if (output && '_text' in output && output._text.length)
             //return output._text
