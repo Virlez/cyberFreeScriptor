@@ -356,10 +356,14 @@ async function transcribe_witai(file) {
             });*/
             stream.destroy()
             for(var attributename in textJson){
-                console.log(attributename+": "+textJson[attributename]);
+               if (attributename === 'text'){
+                   textOut = textJson[attributename]}
+                   console.log(textOut)
+                   break;
+                   
             }
            // console.log(textJson)
-        return textJson;
+        return textOut;
         
         //if (output && '_text' in output && output._text.length)
             //return output._text
