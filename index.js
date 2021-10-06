@@ -341,6 +341,7 @@ async function transcribe_witai(file) {
         witAI_lastcallTS = Math.floor(new Date());
         console.log(output)
         const textOut = JSON.stringify(output);
+        const textJson = JSON.parse(output);
         //JSON.parse(output)
         /*const justText = output(x => {
             return {
@@ -350,8 +351,8 @@ async function transcribe_witai(file) {
             return {
                 text : x.data.text};
             });*/
-            console.log(textOut)   
-        return textOut;
+            console.log(textJson)   
+        return textJson.text;
         stream.destroy()
         //if (output && '_text' in output && output._text.length)
             //return output._text
