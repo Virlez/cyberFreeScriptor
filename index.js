@@ -352,8 +352,8 @@ async function transcribe_witai(file) {
                 text : x.data.text};
             });*/
             stream.destroy()
-            console.log(textJson)
-        return textJson;
+            console.log(textJson["Virlez"]["text"])
+        return textJson["Virlez"];
         
         //if (output && '_text' in output && output._text.length)
             //return output._text
