@@ -357,7 +357,7 @@ async function transcribe_witai(file) {
             });*/
             stream.destroy()
             for(var attributename in textJson){
-               if (attributename === "text"){
+               if (attributename == "text"){
                    text = textJson[attributename]}
                    console.log(text)
                    break;
